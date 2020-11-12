@@ -1,0 +1,7 @@
+header {
+    background-position-y: 75%;
+    background-size: cover;
+    background-image: url('../../assets/images/aloha.jpg');
+    height: 300px;
+    margin-bottom: 35px;
+}
