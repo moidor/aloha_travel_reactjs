@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PlaceDataService from '../services/place.service';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class AddPlace extends Component {
     constructor(props) {
@@ -59,6 +60,7 @@ class AddPlace extends Component {
               available: response.data.available,
               submitted: true
             });
+            toast.success(`Le site touristique ${response.data.name} a été ajouté avec succès !`);
             console.log(response.data);
           })
           .catch(e => {
@@ -130,7 +132,6 @@ class AddPlace extends Component {
                         type="text"
                         className="form-control"
                         id="image"
-                        required
                         value={place.image}
                         onChange={this.onChangeInput}
                         name="image"

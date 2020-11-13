@@ -36,7 +36,7 @@ class PlacesPutForm extends Component {
             console.log(response.data);
           })
           .catch(e => {
-            console.log(e);
+            console.log(e.response);
           });
     }
 
