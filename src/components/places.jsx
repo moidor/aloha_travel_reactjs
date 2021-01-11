@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Place from './place';
 import PlaceDataService from '../services/place.service';
+//import MyModal from '../components/common/modal';
 
 class Places extends Component {
     constructor(props) {
@@ -23,10 +24,10 @@ class Places extends Component {
         this.setState({
             places: response.data
         });
-        console.log(response.data);
+            console.log(response.data);
         })
         .catch(e => {
-        console.log(e.response);
+            console.log(e.response);
         });
     }
 
@@ -36,12 +37,13 @@ class Places extends Component {
         return ( 
             <div>
                 <div className="container">
-                    Come and see our <span className="badge badge-primary">{places.length}</span> superb places to visit in Hawaii... 🌴. Just click to add and once again to cancel the adding.
+                    {/* <MyModal /> */}
+                    Venez découvrir nos <span className="badge badge-primary">{places.length}</span> magnifiques sites à Hawaï... 🌴
                     <div className="row justify-content-md-center">
                             { places.map(place =>
                             <Place 
                             key={place.id}
-                            place={place}
+                            placeParentComponent={place}
                             places={places} /> )}
                     </div>
                 </div>

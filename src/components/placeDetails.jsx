@@ -11,6 +11,7 @@ class PlaceDetails extends Component {
                 island: '',
                 image: '',
                 description: '',
+                longDescription: '',
                 //gallery: '',
                 price: 0,
                 available: false
@@ -36,7 +37,7 @@ class PlaceDetails extends Component {
     }
 
     render() { 
-        const { match, history } = this.props;
+        const { history } = this.props;
         const { currentPlace } = this.state;
 
         return ( 
@@ -46,8 +47,7 @@ class PlaceDetails extends Component {
                     <p className="lead">This is a simple hero unit, a simple jumbotron-style component for
                                     calling extra attention to featured content or information.</p>
                     <hr className="my-2"/>
-                    <p>It uses utility classes for typography and
-                        spacing to space content out within the larger container.</p>
+                    <p>{currentPlace.longDescription}</p>
                     <p className="lead">
                         {/* Ajouter un toast.success pour indiquer que le site a été reservé par le client avec succès et un toast.info/error s'il le retire */}
                         <button className="btn btn-primary" 

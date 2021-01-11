@@ -27,6 +27,12 @@ class PlacesPutForm extends Component {
         this.getPlace(this.props.match.params.id);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log('prevProps', prevProps);
+        console.log('prevState', prevState);
+        console.log("Modification en cours du site touristique");
+    }
+
     getPlace(id) {
         PlaceDataService.get(id)
           .then(response => {
@@ -128,6 +134,17 @@ class PlacesPutForm extends Component {
                                 name="description"
                                 value={currentPlace.description}
                                 onChange={this.onChangeInput}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="longDescription">Description détaillée</label>
+                            <textarea
+                                type="textarea"
+                                className="form-control"
+                                id="longDescription"
+                                name="longDescription"
+                                value={currentPlace.longDescription}
+                                onChange={this.onChangeInput}></textarea>
                         </div>
 
                         <div className="form-group">

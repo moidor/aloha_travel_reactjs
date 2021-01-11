@@ -48,13 +48,17 @@ class AdminPlaces extends Component {
         await this.getUnavailablePlaces();
     }
 
+    componentWillUnmount() {
+        console.log("Composant démonté et/ou rechargé");
+    }
+
     getAllPlaces() {
     PlaceDataService.getAll()
         .then(response => {
         this.setState({
             places: response.data
         });
-        console.log(response.data);
+        console.log("Sites touristiques chargés depuis la base de données : ", response.data);
         })
         .catch(e => {
         console.log(e.response);
@@ -67,7 +71,7 @@ class AdminPlaces extends Component {
         this.setState({
             unavailablePlaces: response.data
         });
-        console.log(response.data);
+        console.log(`Unavailable places loaded : ${response.data}`);
         })
         .catch(e => {
         console.log(e.response);

@@ -17,6 +17,7 @@ class AddPlace extends Component {
                 island: '',
                 image: '',
                 description: '',
+                longDescription: '',
                 //gallery: '',
                 price: 0,
                 available: false,
@@ -42,6 +43,7 @@ class AddPlace extends Component {
           island: place.island,
           image: place.image,
           description: place.description,
+          longDescription: place.longDescription,
           //gallery: place.gallery,
           price: place.price,
           available: place.available,
@@ -55,6 +57,7 @@ class AddPlace extends Component {
               island: response.data.island,
               image: response.data.image,
               description: response.data.description,
+              longDescription: response.data.longDescription,
               //gallery: response.data.gallery,
               price: response.data.price,
               available: response.data.available,
@@ -71,10 +74,11 @@ class AddPlace extends Component {
       newPlace() {
         this.setState({
           id: null,
-          name: "",
-          island: "",
-          image: "",
-          description: "",
+          name: '',
+          island: '',
+          image: '',
+          description: '',
+          longDescription: '',
           //gallery: "",
           price: 0,
           available: false,
@@ -114,7 +118,7 @@ class AddPlace extends Component {
                     </div>
       
                     <div className="form-group">
-                      <label htmlFor="description">Île</label>
+                      <label htmlFor="island">Île</label>
                       <input
                         type="text"
                         className="form-control"
@@ -127,7 +131,7 @@ class AddPlace extends Component {
                     </div>
       
                     <div className="form-group">
-                      <label htmlFor="description">Image</label>
+                      <label htmlFor="image">Image</label>
                       <input
                         type="text"
                         className="form-control"
@@ -151,6 +155,18 @@ class AddPlace extends Component {
                       />
                     </div>
 
+                    <div className="form-group">
+                      <label htmlFor="longDescription">Description détaillée</label>
+                      <textarea
+                        type="textarea"
+                        className="form-control"
+                        id="longDescription"
+                        value={place.longDescription}
+                        onChange={this.onChangeInput}
+                        name="longDescription"
+                      ></textarea>
+                    </div>
+
                     {/* <div className="form-group">
                       <label htmlFor="description">Galerie</label>
                       <input
@@ -165,7 +181,7 @@ class AddPlace extends Component {
                     </div> */}
 
                     <div className="form-group">
-                      <label htmlFor="description">Prix</label>
+                      <label htmlFor="price">Prix</label>
                       <input
                         type="number"
                         className="form-control"
@@ -178,7 +194,7 @@ class AddPlace extends Component {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="description">Disponibilité</label>
+                      <label htmlFor="available">Disponibilité</label>
                       <input
                         type="checkbox"
                         className="form-control"

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import './App.css';
 import Header from './components/header';
 import Places from './components/places';
 import Account from './components/account';
@@ -9,8 +8,10 @@ import PlaceDetails from './components/placeDetails';
 import AddPlace from './components/addPlace';
 import PlacesPutForm from './components/PlacesPutForm';
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AdminPlaces from './components/adminPlaces';
+import "react-toastify/dist/ReactToastify.css";
+import './App.css';
+
 
 
 class App extends Component {
@@ -38,8 +39,6 @@ class App extends Component {
             <Route path="/home" component={Home} />
             <Route path="/places/details/:id" component={PlaceDetails} />
             <Route path="/places/:id" component={PlacesPutForm} />
-            {/* <Route path="places/:id" render={(props) => <PlaceDetails 
-            totalPlaces={this.state.places.length} {...props} />} /> */}
             {/* <Route path="/places" render={(props) => <Places 
                    places={this.state.places}
                    totalPlaces={this.state.places.length} {...props} />} /> */}
@@ -47,8 +46,6 @@ class App extends Component {
             <Route path="/account" component={Account} />
             <Route path="/admin" component={AdminPlaces} />
             <Route path="/addPlace" component={AddPlace} />
-            {/* Remanier le comp. PlaceDetails  */}
-            
             <Redirect from="/" exact to="/home" />
             <Redirect to="/not-found" />
           </Switch>

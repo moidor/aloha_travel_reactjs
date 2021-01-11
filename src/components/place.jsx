@@ -10,7 +10,7 @@ class Place extends Component {
     };
 
     render() {
-        const { id, name, island, image, description, price } = this.props.place;
+        const { id, name, island, image, description, price } = this.props.placeParentComponent;
         const { isClicked } = this.state;
 
         return ( 
@@ -21,13 +21,14 @@ class Place extends Component {
                         <h4 className="card-title">
                             <Link to={`/places/details/${id}`}>{name}</Link>
                         </h4>
-                        <h6 className="card-subtitle mb-2 text-muted">{island}</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">Île : {island}</h6>
                         <p className="card-text">👉{description}</p>
                     </div>
                     <div className="card-footer d-flex justify-content-around align-items-baseline">
                         <button onClick={this.changeClass} 
                         className={`${!isClicked ? 'btn btn-primary' : 'btn btn-success'}`}>
-                        { !isClicked ? 'Réserver' : 'Ajouté à votre plan de voyage'}</button>
+                            { !isClicked ? 'Réserver' : 'Ajouté'}
+                        </button>
                         <p>Prix : {`${price === 0 ? 'Gratuit' : price + " €"}`}</p>
                     </div>
                 </div>
