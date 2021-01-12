@@ -38,6 +38,11 @@ class Places extends Component {
         this.setState({ currentPage: page});
     };
 
+    availablePlaces() {
+        const lengthPlaces = this.state.places.filter(place => place.available === true );
+        return lengthPlaces.length;
+    } 
+
     render() { 
         const { currentPage, pageSize, places } = this.state;
         const { length: count } = this.state.places;
@@ -49,13 +54,14 @@ class Places extends Component {
             <div>
                 <div className="container">
                     {/* <MyModal /> */}
-                    Venez découvrir nos <span className="badge badge-primary">{places.length}</span> magnifiques sites à Hawaï... 🌴
+                    Venez découvrir nos <span className="badge badge-primary">{this.availablePlaces()}</span> magnifiques sites touristiques à Hawaï... 🌴
                     <div className="row justify-content-md-center">
                             { allPlaces.map(place =>
                             <Place 
                             key={place.id}
                             placeParentComponent={place}
                             places={places} /> )}
+                            
                     </div>
                 </div>
                 <Pagination 

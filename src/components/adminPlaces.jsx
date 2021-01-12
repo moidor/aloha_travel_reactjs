@@ -129,21 +129,29 @@ class AdminPlaces extends Component {
         this.setState({ searchQuery: query, currentPage: 1 });
     };
 
+    displaySingularOrPlural = () => {
+        const {length: count, } = this.state.places;
+        const { unavailablePlaces } = this.state;
+
+        if (unavailablePlaces === 0) {
+            return <p>La base de données contient <span className="badge badge-primary">{count}</span> sites touristiques.</p>
+        } else if (unavailablePlaces === 1) {
+            return <p>La base de données contient <span className="badge badge-primary">{count}</span> sites touristiques dont {<span className="badge badge-danger">{unavailablePlaces}</span>} est indisponible.</p>
+        } else {
+            return <p>La base de données contient <span className="badge badge-primary">{count}</span> sites touristiques dont {<span className="badge badge-danger">{unavailablePlaces}</span>} sont indisponibles.</p>
+        }
+    }
+
     renderPlaces() {
         // Destructuration
         const {length: count} = this.state.places;
-        const {pageSize, currentPage, sortColumn, searchQuery, unavailablePlaces} = this.state;
+        const {pageSize, currentPage, sortColumn, searchQuery} = this.state;
         const { totalCount, data: places } = this.getPagedData();
-
-        if (count === 0) 
-        return <p>La base de données est vide !</p>;
-        // if (currentPlace.available === true)
-        // return <p>uyfiutvf</p>;
 
         return (
             <div className="row">
                 <div className="col">
-                    <p>La base de données contient <span className="badge badge-primary">{count}</span> sites touristiques dont <span className="badge badge-danger">{unavailablePlaces}</span> sont indisponibles.</p>
+                    <p>{count === 0 ? "La base de données est soit vide soit non chargée !" : this.displaySingularOrPlural()}</p>
                     <div className="d-flex flex-row">
                         <Link to="/addPlace">
                             <button className="btn btn-primary mb-3">Ajouter un site touristique</button>

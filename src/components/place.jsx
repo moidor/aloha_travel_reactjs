@@ -5,12 +5,22 @@ import './css/place.css';
 class Place extends Component {
     state = { isClicked: false }
 
-    changeClass = () => {
+    updateState = () => {
         this.setState(prevState => ({ isClicked: !prevState.isClicked }));
     };
 
+    displayTextInButton() {
+        if (!this.state.isClicked && this.props.placeParentComponent.available === true) {
+            return 'Réserver';
+        } else if (this.state.isClicked && this.props.placeParentComponent.available === true) {
+            return 'Ajouté';
+        } else if (this.props.placeParentComponent.available === false) {
+            return 'Indisponible';
+        }
+    }
+
     render() {
-        const { id, name, island, image, description, price } = this.props.placeParentComponent;
+        const { id, name, island, image, description, price, available } = this.props.placeParentComponent;
         const { isClicked } = this.state;
 
         return ( 
@@ -25,9 +35,12 @@ class Place extends Component {
                         <p className="card-text">👉{description}</p>
                     </div>
                     <div className="card-footer d-flex justify-content-around align-items-baseline">
-                        <button onClick={this.changeClass} 
-                        className={`${!isClicked ? 'btn btn-primary' : 'btn btn-success'}`}>
-                            { !isClicked ? 'Réserver' : 'Ajouté'}
+                        <button onClick={this.updateState} 
+                        className={`${!isClicked ? 'btn btn-primary' : 'btn btn-success'}`}
+                        disabled={available === false}>
+                            {this.displayTextInButton()}
+                            {/* { !isClicked ? 'Réserver' : 'Ajouté' }
+                            { available === false ? 'Indisponible' : null} */}
                         </button>
                         <p>Prix : {`${price === 0 ? 'Gratuit' : price + " €"}`}</p>
                     </div>
