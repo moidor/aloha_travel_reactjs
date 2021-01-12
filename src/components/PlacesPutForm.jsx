@@ -33,6 +33,7 @@ class PlacesPutForm extends Component {
         console.log("Modification en cours du site touristique");
     }
 
+    // Le mot-clé "data" provient de la librairie Axios
     getPlace(id) {
         PlaceDataService.get(id)
           .then(response => {

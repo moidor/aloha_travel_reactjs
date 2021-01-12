@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import Place from './place';
 import PlaceDataService from '../services/place.service';
 //import MyModal from '../components/common/modal';
+import Pagination from './common/pagination';
+import { paginate } from './../utils/paginate';
 
 class Places extends Component {
     constructor(props) {
         super(props);
         //this.getAllPlaces = this.getAllPlaces.bind(this);
-
         this.state = { 
-            places: []
+            places: [],
+            currentPage: 1,
+            pageSize: 5
         }
     }
 
@@ -31,8 +34,16 @@ class Places extends Component {
         });
     }
 
+    handlePageChange = page => {
+        this.setState({ currentPage: page});
+    };
+
     render() { 
-        const { places } = this.state;
+        const { currentPage, pageSize, places } = this.state;
+        const { length: count } = this.state.places;
+        if (count === 0) return <p>La base de données ne s'est pas chargée ou est vide.</p>
+        
+        const allPlaces = paginate(places, currentPage, pageSize);
 
         return ( 
             <div>
@@ -40,13 +51,19 @@ class Places extends Component {
                     {/* <MyModal /> */}
                     Venez découvrir nos <span className="badge badge-primary">{places.length}</span> magnifiques sites à Hawaï... 🌴
                     <div className="row justify-content-md-center">
-                            { places.map(place =>
+                            { allPlaces.map(place =>
                             <Place 
                             key={place.id}
                             placeParentComponent={place}
                             places={places} /> )}
                     </div>
                 </div>
+                <Pagination 
+                    itemsCount={count} 
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChange={this.handlePageChange} 
+                />
             </div>
          );
     }
